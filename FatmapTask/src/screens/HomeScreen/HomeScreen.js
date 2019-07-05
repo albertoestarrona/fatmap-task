@@ -46,8 +46,11 @@ class HomeScreen extends Component {
     });
   };
 
-  onPressItem()  {
-    this.props.navigation.navigate('Map');
+  onPressItem(id, geoData)  {
+    this.props.navigation.navigate('Map',{
+      itemId: id,
+      geoData,
+    });
   }
 
   renderHeader = () => {
@@ -80,7 +83,7 @@ class HomeScreen extends Component {
               title={item.name}
               titleStyle={styles.title}
               subtitle={item.description}
-              onPress={() => this.onPressItem()}
+              onPress={() => this.onPressItem(item.id, item.geo_data)}
             />
           )}
           keyExtractor={item => item.id}
