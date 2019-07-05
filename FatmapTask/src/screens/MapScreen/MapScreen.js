@@ -1,25 +1,42 @@
 import React, { Component } from 'react';
 import {
   View,
-  Text,
+  requireNativeComponent,
 } from 'react-native';
+
+const MapViewSwift = requireNativeComponent('MapView');
 
 class MapScreen extends Component {
   constructor(props) {
     super(props);
-
-    const { navigation } = props;
-    const itemId = navigation.getParam('itemId', null);
-    const geoData = navigation.getParam('geoData', null);
   }
 
   render() {
+    const { navigation } = this.props;
+    const geoData = navigation.getParam('geoData', null);
+    const geoString = JSON.stringify(geoData);
+    console.log('GEO ->', geoString);
+
     return (
-      <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-        <Text>Map Screen</Text>
+      <View style={styles.container}>
+        <MapViewSwift
+          style={ styles.wrapper }
+          count={3}
+          geoData={geoString}
+        />
       </View>
     );
   }
 }
+
+const styles = {
+  container: {
+    flex: 1, alignItems: 'stretch',
+  },
+  wrapper: {
+    flex: 1, alignItems: 'center',
+    justifyContent: 'center',
+  },
+};
 
 export default MapScreen;
