@@ -46,6 +46,10 @@ class HomeScreen extends Component {
     });
   };
 
+  onPressItem()  {
+    this.props.navigation.navigate('Map');
+  }
+
   renderHeader = () => {
     return (
       <SearchBar
@@ -74,7 +78,9 @@ class HomeScreen extends Component {
           renderItem={({ item }) => (
             <ListItem
               title={item.name}
+              titleStyle={styles.title}
               subtitle={item.description}
+              onPress={() => this.onPressItem()}
             />
           )}
           keyExtractor={item => item.id}
@@ -88,7 +94,7 @@ class HomeScreen extends Component {
 
 const styles = {
   container: {
-    flex: 1
+    flex: 1,
   },
   line: {
     height: 1,
@@ -100,6 +106,11 @@ const styles = {
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center'
+  },
+  title: {
+    color: 'black',
+    fontWeight: 'bold',
+    marginBottom: 20,
   }
 };
 
