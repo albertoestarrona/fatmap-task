@@ -74,7 +74,7 @@ class HomeScreen extends Component {
           renderItem={({ item }) => (
             <ListItem
               title={item.name}
-              subtitle={item.short_description}
+              subtitle={item.description}
             />
           )}
           keyExtractor={item => item.id}
