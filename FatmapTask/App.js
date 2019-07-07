@@ -6,13 +6,22 @@ import {
 import HomeScreen from './src/screens/HomeScreen/HomeScreen'
 import MapScreen from './src/screens/MapScreen/MapScreen'
 
-const AppNavigator = createStackNavigator({
-  Home: {
-    screen: HomeScreen,
+const AppNavigator = createStackNavigator(
+  {
+    Home: {
+      screen: HomeScreen,
+    },
+    Map: {
+      screen: MapScreen,
+    }
+  }, {
+    defaultNavigationOptions: {
+      headerTintColor: '#fff',
+      headerStyle: {
+        backgroundColor: '#000',
+      },
+    }
   },
-  Map: {
-    screen: MapScreen,
-  }
-});
+);
 
 export default createAppContainer(AppNavigator);

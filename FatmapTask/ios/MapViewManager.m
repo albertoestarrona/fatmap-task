@@ -12,7 +12,6 @@
 @interface
 
 RCT_EXTERN_MODULE(MapViewManager, RCTViewManager)
-RCT_EXPORT_VIEW_PROPERTY(count, NSNumber)
 RCT_EXPORT_VIEW_PROPERTY(geoData, NSString)
 
 @end

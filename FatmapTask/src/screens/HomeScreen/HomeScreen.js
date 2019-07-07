@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import {
   View,
   FlatList,
-  ActivityIndicator
+  ActivityIndicator,
+  Alert,
 } from 'react-native';
 import { ListItem, SearchBar } from 'react-native-elements';
 import { getMapsList } from '../../services/DataService';
@@ -22,7 +23,7 @@ class HomeScreen extends Component {
 
   static navigationOptions = {
     title: 'Fatmap Testing Maps',
-  }
+  };
 
   renderSeparator = () => {
     return (
@@ -46,11 +47,16 @@ class HomeScreen extends Component {
     });
   };
 
-  onPressItem(id, geoData)  {
-    this.props.navigation.navigate('Map',{
-      itemId: id,
-      geoData,
-    });
+  onPressItem(id, geoData, name)  {
+    if (geoData === null) {
+      Alert.alert('No GeoData available');
+    } else {
+      this.props.navigation.navigate('Map',{
+        itemId: id,
+        geoData,
+        name,
+      });
+    }
   }
 
   renderHeader = () => {
@@ -83,7 +89,7 @@ class HomeScreen extends Component {
               title={item.name}
               titleStyle={styles.title}
               subtitle={item.description}
-              onPress={() => this.onPressItem(item.id, item.geo_data)}
+              onPress={() => this.onPressItem(item.id, item.geo_data, item.name)}
             />
           )}
           keyExtractor={item => item.id}
